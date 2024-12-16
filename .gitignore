@@ -1,3 +1,6 @@
+docker-compose.override.yml
+
+# Defaults
 /node_modules
 /public/build
 /public/hot
