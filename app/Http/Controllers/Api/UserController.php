@@ -15,7 +15,12 @@ class UserController extends Controller
     }
 
     function show($id){
-        return response()->json(User::find($id));
+        try {
+            $user = User::findOrFail($id);
+            return response()->json($user);
+        } catch (ModelNotFoundException $e) {
+            return $this->notFoundResponse();
+        }
     }
 
     function create(UserApiRequest $request){
@@ -27,16 +32,20 @@ class UserController extends Controller
     }
 
     function update(UserApiRequest $request, $id){
-        $user = User::find($id);
-        $user->update($request->all());
+        try {
+            $user = User::findOrFail($id);
+            $user->update($request->all());
 
-        if ($request->input('password')) {
-            $user->password = bcrypt($request->input('password'));
+            if ($request->input('password')) {
+                $user->password = bcrypt($request->input('password'));
+            }
+
+            $user->save();
+
+            return response()->json($user);
+        } catch (ModelNotFoundException $e) {
+            return $this->notFoundResponse();
         }
-
-        $user->save();
-
-        return response()->json($user);
     }
 
     function delete($id){
@@ -46,7 +55,11 @@ class UserController extends Controller
 
             return response(null, 204);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'User not found'], 404);
+            return $this->notFoundResponse();
         }
+    }
+
+    private function notFoundResponse() {
+        return response()->json(['error' => 'User not found'], 404);
     }
 }
