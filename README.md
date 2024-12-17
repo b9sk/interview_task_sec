@@ -12,11 +12,15 @@
 
 ### Первый запуск
 
+Клонировать ветку master из репозитория:
+`git clone https://github.com/b9sk/interview_task_sec.git -b master`
+
 Скопировать `.env.example` в `.env`.
 
 Выполнить `docker compose up -d` и дождаться, когда контейнеры будут готовы.
 
-Создать таблицы и наполнить users тестовыми данными: `./artisan.sh migrate --seed`
+Создать таблицы и наполнить users тестовыми данными из UserSeeder:
+`./artisan.sh migrate --seed`.
 
 Перейти на http://localhost:8080, получить 200.
 
@@ -46,14 +50,13 @@
 __Get-параметры__:
 - `page?: int` - номер страницы
 - `name?: string` - поиск по имени пользователя или по части имени
-TODO
 - `order?: "asc"|"desc"` - поле для сортировки
 
 #### `GET /api/users/{id}`
-Информация о пользователе
+Информация о пользователе.
 
 #### `POST /api/users`
-Создать пользователя
+Создать пользователя.
 
 __Headers:__
 Content-Type: `application/json` (обязательно)
@@ -66,7 +69,7 @@ __Поля__:
 - `comment?: string` - комментарий
 
 #### `PUT /api/users/{id}`
-Обновить пользователя по id. Поля такие же как в `POST /api/users` выше
+Обновить пользователя по id. Поля такие же как в `POST /api/users` выше.
 
 #### `DELETE /api/users/{id}`
-Удалить пользователя по id
+Удалить пользователя по id.
