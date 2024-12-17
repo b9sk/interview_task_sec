@@ -10,8 +10,20 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
-    function index(){
-        return response()->json(User::paginate(20));
+    function index(Request $request) {
+        $query = User::query();
+
+        // поиск по имени или части имени
+        if ($request->input('name')) {
+            $query->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        // сортировка по имени, где только 2 параметра asc и desc
+        if (in_array($request->input('order'), ['asc', 'desc'])) {
+            $query->orderBy('name', $request->input('order'));
+        }
+
+        return response()->json($query->paginate(20));
     }
 
     function show($id){
