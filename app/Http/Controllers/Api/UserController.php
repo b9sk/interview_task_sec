@@ -20,19 +20,30 @@ class UserController extends Controller
 
     function create(UserApiRequest $request){
         $user = User::create($request->all());
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
         return response()->json($user, 201);
     }
 
     function update(UserApiRequest $request, $id){
         $user = User::find($id);
         $user->update($request->all());
+
+        if ($request->input('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->save();
+
         return response()->json($user);
     }
 
     function delete($id){
         try {
-            $user = User::findOrFail($id);
+            User::findOrFail($id);
             User::destroy($id);
+
             return response(null, 204);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'User not found'], 404);
