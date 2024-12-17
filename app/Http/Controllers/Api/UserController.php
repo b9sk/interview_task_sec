@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserApiRequest;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
@@ -29,7 +30,12 @@ class UserController extends Controller
     }
 
     function delete($id){
-        User::destroy($id);
-        return response()->json(null, 204);
+        try {
+            $user = User::findOrFail($id);
+            User::destroy($id);
+            return response(null, 204);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
     }
 }
