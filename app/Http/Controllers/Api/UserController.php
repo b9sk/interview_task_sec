@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserApiRequest;
 use App\Models\User;
 
 class UserController extends Controller
@@ -16,14 +17,12 @@ class UserController extends Controller
         return response()->json(User::find($id));
     }
 
-    // TODO add validation
-    function create(Request $request){
+    function create(UserApiRequest $request){
         $user = User::create($request->all());
         return response()->json($user, 201);
     }
 
-    // TODO add validation
-    function update(Request $request, $id){
+    function update(UserApiRequest $request, $id){
         $user = User::find($id);
         $user->update($request->all());
         return response()->json($user);
