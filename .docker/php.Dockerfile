@@ -11,9 +11,5 @@ WORKDIR /var/www/html
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install Artisan
-COPY --chown=1000:1000 
-
-
 # Set permissions for default user 1000
 RUN usermod -u 1000 www-data && chown -R www-data:www-data /var/www/html

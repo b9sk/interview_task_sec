@@ -1,5 +1,7 @@
 version: '3.9'
 
+name: the_test_project
+
 services:
   php:
     build:
