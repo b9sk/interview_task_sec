@@ -22,54 +22,12 @@
 Создать таблицы и наполнить users тестовыми данными из UserSeeder:
 `./artisan.sh migrate --seed`.
 
+#### Проверка
+
+Выполнить  `./artisan.sh test`, пройти все тесты.
+
 Перейти на http://localhost:8080, получить 200.
 
 
 ## API
-
-### User
-
-Пример объекта User, который вернет каждый метод:
-
-```json
-{
-    "id": 1,
-    "name": "John Doe",
-    "email": "7E7yB@example.com",
-    "ip": "127.0.0.1",
-    "comment": "A lovely user!",
-    "created_at": "2023-01-01T00:00:00.000000Z",
-    "updated_at": "2023-01-01T00:00:00.000000Z"
-}
-```
-Пароль и токен не возвращаются.
-
-#### `GET /api/users`
-Возвращает список пользователей. Используется пагинация Laravel.
-
-__Get-параметры__:
-- `page?: int` - номер страницы
-- `name?: string` - поиск по имени пользователя или по части имени
-- `order?: "asc"|"desc"` - поле для сортировки
-
-#### `GET /api/users/{id}`
-Информация о пользователе.
-
-#### `POST /api/users`
-Создать пользователя.
-
-__Headers:__
-Content-Type: `application/json` (обязательно)
-
-__Поля__:
-- `name: string` - имя пользователя
-- `email: string` - email пользователя
-- `password: string` - пароль 
-- `ip?: string` - ip-адрес
-- `comment?: string` - комментарий
-
-#### `PUT /api/users/{id}`
-Обновить пользователя по id. Поля такие же как в `POST /api/users` выше.
-
-#### `DELETE /api/users/{id}`
-Удалить пользователя по id.
+- см routes/api.php

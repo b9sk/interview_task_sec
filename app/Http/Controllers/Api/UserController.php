@@ -35,7 +35,7 @@ class UserController extends Controller
         }
     }
 
-    function create(UserApiRequest $request){
+    function store(UserApiRequest $request){
         $user = User::create($request->all());
         $user->password = bcrypt($request->input('password'));
         $user->save();
@@ -60,7 +60,7 @@ class UserController extends Controller
         }
     }
 
-    function delete($id){
+    function destroy($id){
         try {
             User::findOrFail($id);
             User::destroy($id);
