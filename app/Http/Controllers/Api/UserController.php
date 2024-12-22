@@ -37,9 +37,6 @@ class UserController extends Controller
 
     function store(UserApiRequest $request){
         $user = User::create($request->all());
-        $user->password = bcrypt($request->input('password'));
-        $user->save();
-
         return response()->json($user, 201);
     }
 
@@ -47,13 +44,6 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
             $user->update($request->all());
-
-            if ($request->input('password')) {
-                $user->password = bcrypt($request->input('password'));
-            }
-
-            $user->save();
-
             return response()->json($user);
         } catch (ModelNotFoundException $e) {
             return $this->notFoundResponse();

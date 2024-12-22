@@ -52,4 +52,13 @@ class UserApiRequest extends FormRequest
             ];
         }
     }
+
+    protected function prepareForValidation()
+    {
+        if ($this->has('password')) {
+            $this->merge([
+                'password' => bcrypt($this->input('password')),
+            ]);
+        }
+    }
 }
