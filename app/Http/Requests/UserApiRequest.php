@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -32,7 +33,8 @@ class UserApiRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules() {
+    public function rules()
+    {
         if ($this->isMethod('post')) {
             return [
                 'email' => 'required|email|unique:users',
