@@ -5,11 +5,9 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 
-
 class UserControllerTest extends TestCase
 {
-
-    public function test_index()
+    public function testIndex()
     {
         User::factory()->count(5)->create();
 
@@ -23,7 +21,7 @@ class UserControllerTest extends TestCase
                  ]);
     }
 
-    public function test_show()
+    public function testShow()
     {
         $user = User::factory()->create();
 
@@ -37,7 +35,7 @@ class UserControllerTest extends TestCase
                  ]);
     }
 
-    public function test_store()
+    public function testStore()
     {
         $email = \Faker\Factory::create()->unique()->safeEmail;
         $userData = [
@@ -59,7 +57,7 @@ class UserControllerTest extends TestCase
         ]);
     }
 
-    public function test_update()
+    public function testUpdate()
     {
         $user = User::factory()->create();
 
@@ -83,7 +81,7 @@ class UserControllerTest extends TestCase
         ]);
     }
 
-    public function test_delete()
+    public function testDelete()
     {
         $user = User::factory()->create();
 

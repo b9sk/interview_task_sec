@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
-    function index(Request $request) {
+    public function index(Request $request)
+    {
         $query = User::query();
 
         // поиск по имени или части имени
@@ -26,7 +27,8 @@ class UserController extends Controller
         return response()->json($query->paginate(20));
     }
 
-    function show($id){
+    public function show($id)
+    {
         try {
             $user = User::findOrFail($id);
             return response()->json($user);
@@ -35,12 +37,14 @@ class UserController extends Controller
         }
     }
 
-    function store(UserApiRequest $request){
+    public function store(UserApiRequest $request)
+    {
         $user = User::create($request->all());
         return response()->json($user, 201);
     }
 
-    function update(UserApiRequest $request, $id){
+    public function update(UserApiRequest $request, $id)
+    {
         try {
             $user = User::findOrFail($id);
             $user->update($request->all());
@@ -50,7 +54,8 @@ class UserController extends Controller
         }
     }
 
-    function destroy($id){
+    public function destroy($id)
+    {
         try {
             User::findOrFail($id);
             User::destroy($id);
@@ -61,7 +66,8 @@ class UserController extends Controller
         }
     }
 
-    private function notFoundResponse() {
+    private function notFoundResponse()
+    {
         return response()->json(['error' => 'User not found'], 404);
     }
 }
