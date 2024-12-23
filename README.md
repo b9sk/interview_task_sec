@@ -182,4 +182,3 @@ curl -X PUT "{{HOST}}/api/users/1" -H "Content-Type: application/json" -d '{
 curl -X DELETE "{{HOST}}/api/users/1"
 ```
 
-Similar code found with 1 license type
