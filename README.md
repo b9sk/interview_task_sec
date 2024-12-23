@@ -1,33 +1,30 @@
-Исходная задача https://gist.github.com/f1uder/91f428ceedcc7ea8ef66a71b2128b9f7
+Original task https://gist.github.com/f1uder/91f428ceedcc7ea8ef66a71b2128b9f7
 
-## Установка
+## Installation
 
-### Системные требования перед установкой
+### Requirements
 - Docker Compose
+- WSL2 (for Windows)
+- free 8080 port
 
-В Windows 10+ нужно использовать WSL2, то есть:
-- запускать Docker Compose через WSL2
-- хранить файлы проекта в WSL2
+### Deploy
+**Note:** On Windows you **must** use WSL2.
 
+Clone `main` branch from the repository:
+`git clone https://github.com/b9sk/interview_task_sec.git -b main`
 
-### Первый запуск
+Copy `.env.example` to `.env`.
 
-Клонировать ветку master из репозитория:
-`git clone https://github.com/b9sk/interview_task_sec.git -b master`
+Run `docker compose up -d` and wait for the containers to be ready.
 
-Скопировать `.env.example` в `.env`.
-
-Выполнить `docker compose up -d` и дождаться, когда контейнеры будут готовы.
-
-Создать таблицы и наполнить users тестовыми данными из UserSeeder:
+Create tables and populate users with test data from UserSeeder:
 `./artisan.sh migrate --seed`.
 
-#### Проверка
+#### Verification
 
-Выполнить  `./artisan.sh test`, пройти все тесты.
+Run `./artisan.sh test`, pass all tests.
 
-Перейти на http://localhost:8080, получить 200.
-
+Go to http://localhost:8080, get 200.
 
 ## API Documentation
 
