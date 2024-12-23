@@ -32,5 +32,12 @@
 
     <rule ref="PSR12">
         <exclude name="Generic.Files.LineLength.TooLong"/>
+        <exclude name="PSR12.Traits.UseDeclaration"/>
+        <exclude name="PSR12.Methods.MethodDeclaration.Underscore"/>
+        <exclude name="PSR12.Methods.MethodDeclaration.VisibilityRequired"/>
+        <exclude name="PSR12.Methods.MethodDeclaration.OpeningBraceNewLine"/>
+        <exclude name="PSR12.Files.FileHeader.HeaderSpacing"/>
+        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceBefore"/>
+        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
     </rule>
 </ruleset>
