@@ -1,6 +1,6 @@
 Original task (all requirments are competed) https://gist.github.com/f1uder/91f428ceedcc7ea8ef66a71b2128b9f7
 
-## Component list
+## Implemented Component List
 - Route::resource
 - UserController
 - Form Verification
@@ -8,8 +8,9 @@ Original task (all requirments are competed) https://gist.github.com/f1uder/91f4
 
 ## TODO: Implement these components (sorted by priority)
 - Schedule (cron)
-- Queues (Jobs/Workers)
+- Queues (jobs/workers, async/microservice communication)
 - Commands (cli)
+- Object cache
 - Push (Websockets)
 
 ## Installation
