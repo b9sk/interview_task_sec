@@ -1,0 +1,50 @@
+@startuml
+
+package "Client Request" as client {
+  :Makes Request;
+}
+
+package "Laravel Controller" as controller {
+  :Receives Request;
+  :Return Cached Data if Cache Exists;
+  :Call Service to Fetch Data if Cache Does Not Exist;
+}
+
+package "ExchangeRateService" as service {
+  :Fetch Rates from API;
+  :Cache Retrieved Data;
+}
+
+package "Cache System" as cache {
+  :Check Cache;
+  :Store Data in Cache;
+}
+
+package "Remote API" as api {
+  :Respond with Exchange Rates;
+}
+
+package "Artisan Command" as artisan {
+  :User Executes Command;
+}
+
+package "Scheduler" as scheduler {
+  :Runs Command Periodically;
+}
+
+package "Livewire Component" as livewire {
+  :Displays Cached Data;
+  :Manual Refresh Option;
+}
+
+client --> controller: Sends HTTP Request
+controller --> cache: Checks Cache
+controller --> service: Calls fetchRates
+service --> api: Makes API Call
+api --> service: Responds with Data
+service --> cache: Updates Cache
+artisan --> service: Calls fetchRates
+scheduler --> artisan: Executes Command
+controller --> livewire: Passes Cached Data
+
+@enduml
