@@ -55,6 +55,9 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('users', [
             'email' => $email
         ]);
+
+        // remove the user created by its factory
+        User::where('email', $email)->delete();
     }
 
     public function testUpdate()
@@ -79,6 +82,9 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => 'Updated User'
         ]);
+
+        // remove the user created by its factory
+        $user->delete();
     }
 
     public function testDelete()
