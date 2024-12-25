@@ -30,6 +30,8 @@ Copy `.env.example` to `.env`.
 
 Run `docker compose up -d` and wait for the containers to be ready.
 
+Run `./composer.sh install`.
+
 Create tables and populate users with test data from UserSeeder:
 `./artisan.sh migrate --seed`.
 
