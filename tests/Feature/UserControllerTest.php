@@ -77,7 +77,7 @@ class UserControllerTest extends TestCase
                  ]);
 
         $this->assertDatabaseHas('users', [
-            'email' => 'updated@example.com'
+            'name' => 'Updated User'
         ]);
     }
 
