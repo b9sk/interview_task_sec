@@ -28,9 +28,9 @@ Clone `main` branch from the repository:
 
 Copy `.env.example` to `.env`.
 
-Run `docker compose up -d` and wait for the containers to be ready.
+Run `docker compose up -d` and wait for the containers are ready.
 
-Run `./composer.sh install`.
+Run `./composer.sh install` to create vendor/ and apply post install scripts declared in `composer.json`.
 
 Create tables and populate users with test data from UserSeeder:
 `./artisan.sh migrate --seed`.
